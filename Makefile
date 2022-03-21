@@ -41,7 +41,7 @@ CONFIG_DEFAULT_AR=y
 endif
 
 # installation directory
-prefix=/usr/local
+prefix?=/usr/local
 
 # use the gprof profiler
 #CONFIG_PROFILE=y
@@ -54,9 +54,9 @@ OBJDIR=.obj
 
 ifdef CONFIG_WIN32
   ifdef CONFIG_M32
-    CROSS_PREFIX=i686-w64-mingw32-
+    CROSS_PREFIX?=i686-w64-mingw32-
   else
-    CROSS_PREFIX=x86_64-w64-mingw32-
+    CROSS_PREFIX?=x86_64-w64-mingw32-
   endif
   EXE=.exe
 else
@@ -299,9 +299,9 @@ clean:
 
 install: all
 	mkdir -p "$(DESTDIR)$(prefix)/bin"
-	$(STRIP) qjs qjsc
-	install -m755 qjs qjsc "$(DESTDIR)$(prefix)/bin"
-	ln -sf qjs "$(DESTDIR)$(prefix)/bin/qjscalc"
+	$(STRIP) qjs$(EXE) qjsc$(EXE)
+	install -m755 qjs$(EXE) qjsc$(EXE) "$(DESTDIR)$(prefix)/bin"
+	ln -sf qjs$(EXE) "$(DESTDIR)$(prefix)/bin/qjscalc$(EXE)"
 	mkdir -p "$(DESTDIR)$(prefix)/lib/quickjs"
 	install -m644 libquickjs.a "$(DESTDIR)$(prefix)/lib/quickjs"
 ifdef CONFIG_LTO
