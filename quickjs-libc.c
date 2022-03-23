@@ -57,7 +57,7 @@ typedef sig_t sighandler_t;
 
 #endif
 
-#if !defined(_WIN32)
+#if 0
 /* enable the os.Worker API. IT relies on POSIX threads */
 #define USE_WORKER
 #endif
