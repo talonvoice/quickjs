@@ -65,7 +65,7 @@ else
 endif
 ifdef CONFIG_CLANG
   HOST_CC=clang
-  CC=$(CROSS_PREFIX)clang
+  CC?=$(CROSS_PREFIX)clang
   CFLAGS?=-g -Wall -MMD -MF $(OBJDIR)/$(@F).d
   CFLAGS += -Wextra
   CFLAGS += -Wno-sign-compare
@@ -86,7 +86,7 @@ ifdef CONFIG_CLANG
   endif
 else
   HOST_CC=gcc
-  CC=$(CROSS_PREFIX)gcc
+  CC?=$(CROSS_PREFIX)gcc
   CFLAGS?=-g -Wall -MMD -MF $(OBJDIR)/$(@F).d
   CFLAGS += -Wno-array-bounds -Wno-format-truncation
   ifdef CONFIG_LTO
